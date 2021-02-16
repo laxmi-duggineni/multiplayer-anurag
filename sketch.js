@@ -13,6 +13,8 @@ var selectionTitle, selectionTitleImage;
 var player;
 var stoneGroup, stoneImage;
 var count = 0;
+var boyCopy ; 
+var girlCopy;
 
 function preload(){
 
@@ -50,6 +52,15 @@ function setup() {
   boySprite.addImage( "girl",boyImage);
   boySprite.visible = false ;
 
+  boyCopy = createSprite(350, 400, 50, 50);
+  boyCopy.addImage( "girl",boyImage);
+  boyCopy.visible = false ;
+
+  girlCopy = createSprite(700, 400, 50, 50);
+  girlCopy.addImage( "girl",girlImage);
+  girlCopy.scale= 1.2;
+  girlCopy.visible = false ;
+
   bg= createSprite(0, 0);
   
   bg.addImage("mybg", backgroundImage);
@@ -85,14 +96,21 @@ function draw() {
     singleButton.visible= false;
     
    }
-
+  
    if(mousePressedOver(girlSprite)) {
-    boySprite.visible =false;
-    girlSprite.visible = true
+    boySprite.destroy();
+    boySprite.depth = -3;
+    girlSprite.visible = true;
+    girlSprite.depth = 2;
+   
+   
   }
-  else if(mousePressedOver(boySprite)) {
-    boySprite.visible =true;
-    girlSprite.visible = false;
+ 
+   else if(mousePressedOver(boySprite)) {
+    boyCopy.visible =true;
+    
+    girlSprite.destroy();
+    girlSprite.depth= -4;
   }
 
 
